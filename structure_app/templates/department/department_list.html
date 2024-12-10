@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} Список отделов {% endblock %}
+
+{% block content %}
+    <h2>Список отделов</h2>
+    <ul>
+        {% for department in departments %}
+            <li>
+                <a href="{% url 'department-detail' department.pk %}">{{ department.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'department-create' %}">Добавить новый отдел</a>
+{% endblock %}

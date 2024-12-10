@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Детали департамента: {{ department.name }}{% endblock %}
+
+{% block content %}
+    <h2>{{ department.name }}</h2>
+    <p><strong>Описание:</strong> {{ department.description }}</p>
+    <p><strong>Менеджер:</strong>
+        {% if department.manager %}
+            {{ department.manager.first_name }} {{ department.manager.last_name }}
+        {% else %}
+            Не назначен
+        {% endif %}
+    </p>
+    <h3>Проекты отдела</h3>
+    <h4>Активные проекты:</h4>
+    <ul>
+        {% if active_projects %}
+            {% for project in active_projects %}
+                <li><a href="{% url 'project-detail' project.pk %}">{{ project.name }}</a></li>
+            {% endfor %}
+        {% else %}
+            <p>Нет активных проектов (отдел лентайничает) </p>
+        {% endif %}
+    </ul>
+
+    <h4>Закрытые проекты:</h4>
+    <ul>
+        {% if closed_projects %}
+            {% for project in closed_projects %}
+                <li><a href="{% url 'project-detail' project.pk %}">{{ project.name }}</a></li>
+            {% endfor %}
+        {% else %}
+            <p>Нет закрытых проектов (еще работают бедняги) </p>
+        {% endif %}
+    </ul>
+
+    <a href="{% url 'department-update' department.pk %}">Редактировать</a> |
+    <a href="{% url 'department-delete' department.pk %}">Удалить</a>
+    <br><br>
+    <a href="{% url 'department-list' %}">Назад к списку</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+version: '3.12.6'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"  # Пробрасываем порт 8000
+    volumes:
+      - .:/app  # Монтируем текущую директорию в контейнер (по необходимости)
+    environment:
+      DJANGO_SETTINGS_MODULE: structure_project.settings  # Указываем настройки Django (если необходимо)

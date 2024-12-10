@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Детали проекта: {{ project.name }}{% endblock %}
+
+{% block content %}
+    <h2>{{ project.name }}</h2>
+    <p><strong>Описание:</strong> {{ project.description }}</p>
+    <p><strong>Отдел:</strong> {{ project.department.name }}</p>
+    <p><strong>Дата начала:</strong> {{ project.start_date }}</p>
+    <p><strong>Дата завершения:</strong> {{ project.end_date }}</p>
+    <p><strong>Активен:</strong> {{ project.is_active }}</p>
+    <a href="{% url 'project-update' project.pk %}">Редактировать</a> | 
+    <a href="{% url 'project-delete' project.pk %}">Удалить</a>
+    <br><br>
+    <a href="{% url 'project-list' %}">Назад к списку</a>
+{% endblock %}

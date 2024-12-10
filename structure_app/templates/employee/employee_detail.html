@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %} Детали сотрудника: {{ employee.user.first_name }} {{ employee.user.last_name }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ employee.user.first_name }} {{ employee.user.last_name }}</h2>
+    <p><strong>Отдел:</strong> 
+        {% if employee.department %}
+            {{ employee.department.name }}
+        {% else %}
+            Без отдела
+        {% endif %}
+    </p>
+    <p><strong>Должность:</strong> {{ employee.position }}</p>
+    <p><strong>Дата приема:</strong> {{ employee.hire_date }}</p>
+    <a href="{% url 'employee-update' employee.pk %}">Редактировать</a> | 
+    <a href="{% url 'employee-delete' employee.pk %}">Удалить</a>
+    <br><br>
+    <a href="{% url 'employee-list' %}">Назад к списку сотрудников </a>
+{% endblock %}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        Мой проект
+        {% endblock %}
+    </title>
+</head>
+<body>    
+    <nav>
+        <a href="{% url 'department-list' %}">Отделы</a>
+        <a href="{% url 'employee-list' %}">Сотрудники</a>
+        <a href="{% url 'project-list' %}">Проекты</a>
+    </nav>
+
+    <div>
+        {% block content %}{% endblock %}
+    </div> 
+</body>
+</html>

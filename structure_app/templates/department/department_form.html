@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{% if department %}Редактирование департамента{% else %}Создание нового департамента{% endif %}</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <button type="submit">{% if department %}Обновить{% else %}Создать{% endif %}</button>
+  </form>
+
+  <a href="{% url 'department-list' %}">Назад к списку департаментов</a>
+{% endblock %}
